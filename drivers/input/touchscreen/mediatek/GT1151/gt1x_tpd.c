@@ -641,10 +641,6 @@ static s32 tpd_i2c_probe(struct i2c_client *client,
 	/*int count = 0;*/
 
 	GTP_INFO("%s start.", __func__);
-#ifdef CONFIG_MTK_BOOT
-	if (get_boot_mode() == RECOVERY_BOOT)
-		return 0;
-#endif
 	probe_thread = kthread_run(tpd_registration,
 					(void *)client, "tpd_probe");
 	if (IS_ERR(probe_thread)) {
@@ -744,7 +740,6 @@ void gt1x_touch_down(s32 x, s32 y, s32 size, s32 id)
 #ifdef CONFIG_MTK_BOOT
 	if (tpd_dts_data.use_tpd_button) {
 		if (get_boot_mode() == FACTORY_BOOT ||
-			get_boot_mode() == RECOVERY_BOOT)
 			tpd_button(x, y, 1);
 	}
 #endif
@@ -766,7 +761,6 @@ void gt1x_touch_up(s32 id)
 #ifdef CONFIG_MTK_BOOT
 	if (tpd_dts_data.use_tpd_button) {
 		if (get_boot_mode() == FACTORY_BOOT ||
-			get_boot_mode() == RECOVERY_BOOT)
 			tpd_button(0, 0, 0);
 	}
 #endif
