@@ -671,7 +671,7 @@ static int jadard_detect_panel(void)
 {
     /*HS14_U code for SR-AL6528E-01-39  by zhengkunbang at 20230726 start*/
     int boot_mode = tp_get_boot_mode();
-    if ((boot_mode != NORMAL_BOOT) && (boot_mode != ALARM_BOOT)) {
+    if ((boot_mode != RECOVERY_BOOT) && (boot_mode != ALARM_BOOT)) {
         JD_E("tp init fail because boot_mode = %d\n",tp_get_boot_mode());
         return -EINVAL;
     }
